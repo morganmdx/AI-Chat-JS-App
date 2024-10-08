@@ -12,26 +12,38 @@
     <p id="response"></p>
 
     <script>
-        async function sendToWitAI() {
-            const userInput = document.getElementById('userInput').value;
-            const responseElement = document.getElementById('response');
+        const responses = {
+    greet: "Hello! How can I assist you today?",
+    help: "I'm here to help! What do you need assistance with?",
+    goodbye: "Goodbye! Have a great day!",
+    // Add more intent-response pairs as needed
+};
 
-            try {
-                const response = await fetch('https://api.wit.ai/message?v=20231008&q=' + encodeURIComponent(userInput), {
-                    headers: {
-                        'Authorization': 'Bearer NY5DDZZU7S6JPMRC72NOQWLTBY6GTFU2', // Replace with your Wit.ai token
-                    }
-                });
+async function sendToWitAI() {
+    const userInput = document.getElementById('userInput').value;
+    const responseElement = document.getElementById('response');
 
-                const data = await response.json();
-                const intent = data.entities.intent && data.entities.intent[0] ? data.entities.intent[0].value : "No intent found";
-                
-                // Display the response
-                responseElement.textContent = `AI Response: ${intent}`;
-            } catch (error) {
-                responseElement.textContent = `Error: ${error.message}`;
+    try {
+        const response = await fetch('https://api.wit.ai/message?v=20231008&q=' + encodeURIComponent(userInput), {
+            headers: {
+                'Authorization': 'Bearer NY5DDZZU7S6JPMRC72NOQWLTBY6GTFU2'
             }
+        });
+
+        const data = await response.json();
+        const intent = data.intents && data.intents[0] ? data.intents[0].name : null;
+
+        // Use the mapping to get the appropriate response
+        if (intent && responses[intent]) {
+            responseElement.textContent = `AI: ${responses[intent]}`;
+        } else {
+            responseElement.textContent = 'AI: I did not understand. Can you please repeat?';
         }
+    } catch (error) {
+        responseElement.textContent = `Error: ${error.message}`;
+    }
+}
+
     </script>
 </body>
 </html>
