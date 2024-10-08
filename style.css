@@ -1,3 +1,16 @@
+/* Global Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
 /* Spinner CSS */
 .loader {
     border: 8px solid #f3f3f3;
@@ -17,4 +30,51 @@
     color: #333;
     padding: 10px;
     border-radius: 5px;
+}
+
+/* Chat Container */
+.chat-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+/* Input Box */
+.input-box {
+    width: 300px;
+    padding: 10px;
+    border: 2px solid #3498db;
+    border-radius: 25px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.input-box:focus {
+    border-color: #2980b9; /* Darker blue on focus */
+}
+
+/* Send Button */
+.send-button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.send-button:hover {
+    background-color: #2980b9; /* Darker blue on hover */
+}
+
+/* Response Text */
+.response-text {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #333;
+    text-align: center;
 }
