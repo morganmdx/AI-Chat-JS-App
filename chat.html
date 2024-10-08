@@ -5,23 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Chat App</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome -->
 </head>
 <body>
     <h1>Chat with AI</h1>
     <input type="text" id="userInput" placeholder="Say 'hi'" class="input-box">
     <button onclick="sendToWitAI()" class="send-button">Send</button>
+    <div class="divider"></div>
     <p id="response" class="response-text"></p>
+    <button id="playButton" class="play-button" style="display:none;">
+        <i class="fas fa-volume-up"></i> <!-- Font Awesome sound icon -->
+    </button>    
     <div id="loader" style="display:none;" class="loader"></div>
 
     <script>
+let voiceResponse = ""; // Variable to store the voice response
+
 function sendToWitAI() {
     const userInput = document.getElementById("userInput").value; // Get the user input
     const responseElement = document.getElementById("response");
+    const playButton = document.getElementById("playButton");
     const loader = document.getElementById("loader");
 
     // Show loader while processing
     loader.style.display = "block";
     responseElement.textContent = ""; // Clear previous response
+    playButton.style.display = "none"; // Hide play button initially
 
     // Send the input to Wit.ai
     fetch(`https://api.wit.ai/event?v=20241008&session_id=prodc3u&context_map={}`, {
@@ -46,11 +55,12 @@ function sendToWitAI() {
             const responseText = data.response.text || "I didn't understand that. Can you please clarify?";
             responseElement.textContent = responseText;
 
-            // Optionally, if you want to handle voice response, you can do something like this:
-            const voiceResponse = data.response.speech.q; // Get voice response if needed
+            // Store the voice response for later use
+            voiceResponse = data.response.speech.q; // Get the voice response
+
+            // Show the play button if there is a voice response
             if (voiceResponse) {
-                // Call the function to speak the response
-                speak(voiceResponse);
+                playButton.style.display = "inline"; // Show the play button
             }
         } else {
             responseElement.textContent = "I didn't understand that. Can you please clarify?";
@@ -78,6 +88,20 @@ function speak(text) {
         console.log("Speech synthesis not supported in this browser.");
     }
 }
+
+// Add an event listener for the play button
+document.getElementById("playButton").addEventListener("click", function() {
+    speak(voiceResponse); // Call the speak function with the stored voice response
+});
+
+// Add an event listener to the userInput field for the Enter key
+document.getElementById("userInput").addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        event.preventDefault(); // Prevent the default form submission (if any)
+        sendToWitAI(); // Call the function to send the input
+    }
+});
+
 
     </script>
 </body>
