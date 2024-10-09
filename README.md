@@ -1,6 +1,20 @@
 # AI Chat Application
 
-This is a simple AI chat application that utilises Wit.ai for natural language processing to understand user input, allowing users to interact with the AI through the text box input. The app responds to greetings and provides a voice response feature, making the interaction engaging and user-friendly.
+This is a simple AI chat application that utilises Wit.ai for natural language processing to understand user input, allowing users to interact with the AI through the text box input.
+
+This model is based on 1 x Q&A with changeable input and a keyword-based natural language processing model to understand user input and return a corresponding response via Wit.AI.
+
+The app responds to greetings and provides a voice response feature, making the interaction engaging and user-friendly.
+
+## Tech Stack
+
+- **Frontend**:
+  ![HTML](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white&style=flat-square)
+  ![CSS](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white&style=flat-square)
+  ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black&style=flat-square)
+
+- **Backend**:
+  - Wit.ai (for natural language understanding)
 
 ## Features
 
@@ -10,16 +24,6 @@ This is a simple AI chat application that utilises Wit.ai for natural language p
 - **Keyboard Interaction**: Allows users to submit input by pressing the Enter key.
 - **Clickable Sound Button**: Users can play the voice response using a clickable sound icon.
 
-## Tech Stack
-
-- **Frontend**:
-  - <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML" height="40"> HTML
-  - <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS" height="40"> CSS
-  - <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" height="40"> JavaScript
-
-- **Backend**:
-  - Wit.ai (for natural language understanding)
-
 ## Getting Started
 
 To run the application locally, follow these steps:
@@ -27,4 +31,4 @@ To run the application locally, follow these steps:
 1. **Clone the Repository**:
    ```bash
    git clone https://github.com/morganmdx/AI-Chat-JS-App.git
-   cd ai-chat-app
+   cd AI-Chat-JS-App-main
